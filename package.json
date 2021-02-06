@@ -1,0 +1,9 @@
+{
+  "name": "flexxi-web",
+  "version": "1.0.0",
+  "description": "Web application for flexi client",
+  "main": "index.js",
+  "repository": "git@github.com:swiftecham/flexxi-web.git",
+  "author": "Martin Ayvazyan <martinayvazyan@workfront.com>",
+  "license": "MIT"
+}
