@@ -1,0 +1,11 @@
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  >div >span {
+    font-size: 16px;
+    color: #191d21;
+    letter-spacing: -0.22px;
+    margin-right: 24px;
+  }
+}
