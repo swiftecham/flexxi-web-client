@@ -1,0 +1,38 @@
+.inputWrapper {
+  position: relative;
+}
+
+.inputText {
+  border-radius: 4px;
+  border: solid 1px #dad6e5;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px 20px;
+  font-size: 16px;
+}
+.inputText:focus {
+  padding-top: 24px;
+  padding-bottom: 8px;
+}
+.inputText:focus ~ .floating-label {
+  top: 8px;
+  bottom: 10px;
+  left: 20px;
+  opacity: 1;
+  font-size: 14px;
+}
+
+.floating-label {
+  position: absolute;
+  pointer-events: none;
+  left: 20px;
+  top: 18px;
+  transition: 0.2s ease all;
+  color: #b3b0bc;
+}
+
+.marginBottom {
+  margin-bottom: 24px;
+}
+
+

@@ -1,30 +1,21 @@
-import React from 'react';
-import Header from './Header/Header';
+import React, { useState } from 'react';
+import Header from './Header';
 import styles from './registrationSteps.module.scss';
-import Logo from '../../Icons/background.svg';
-import BoldText from '../../UiKitComponents/BoldText/BoldText';
-import PhoneNumberField from '../../ReusableFields/PhoneNumberField';
-import Button from '../../UiKitComponents/Button';
+import EnterYourPhone from './EnterYourPhone';
+import EnterCode from './EnterCode/EnterCode';
+import EnterYourDetails from './EnterYourDetails';
 
 const RegistrationSteps = () => {
+
+        const [ registrationStep ,  setRegistrationStep ] = useState(0);
 
         return(
             <div className={styles.registrationSteps}>
                 <Header />
-                <div className={styles.registrationBody}>
-                        <img src={Logo}/>
-                        <br/>
-                        <BoldText> Sign up to Flexxi</BoldText>
-                        <br/>
-                        <p> Provide your phone number </p>
-                        <PhoneNumberField />
-                        <br />
-                        <Button  primary>
-                            Submit
-                        </Button>
-                </div>
-                    <span className={'termsOfUse'}> Terms of use</span>
-
+                {registrationStep === 0 ? <EnterYourPhone setRegistrationStep={setRegistrationStep}/> : []}
+                {registrationStep === 1 ? <EnterCode setRegistrationStep={setRegistrationStep}/> : []}
+                {registrationStep === 2 ? <EnterYourDetails setRegistrationStep={setRegistrationStep}/> : []}
+                <span className={'termsOfUse'} > Terms of use</span>
             </div>)
 };
 
