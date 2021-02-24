@@ -22,6 +22,18 @@
   font-size: 14px;
 }
 
+.inputText:not(:focus):not(:invalid) ~ .floating-label{
+  top: 8px;
+  bottom: 10px;
+  left: 20px;
+  opacity: 1;
+  font-size: 14px;
+}
+.inputText:not(:focus):not(:invalid) {
+  padding-top: 24px;
+  padding-bottom: 8px;
+}
+
 .floating-label {
   position: absolute;
   pointer-events: none;

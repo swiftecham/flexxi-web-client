@@ -4,7 +4,7 @@ import cx from 'classnames';
 const Input = ({placeholder, marginBottom, ...props}) => {
     return (
         <div className={cx(styles.inputWrapper, {[styles.marginBottom]: marginBottom})}>
-            <input type="text" className={styles.inputText}/>
+            <input  className={styles.inputText} {...props} required/>
             <span className={styles['floating-label']}>{placeholder}</span>
         </div>
     )

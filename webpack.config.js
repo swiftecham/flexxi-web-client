@@ -7,6 +7,8 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: '/'
     },
+    stats: 'errors-only',
+
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
         open: true,

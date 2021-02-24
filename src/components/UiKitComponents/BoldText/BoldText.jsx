@@ -1,6 +1,7 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
 import styles from './boldText.module.scss';
+import { string } from 'prop-types';
 
 const BoldText = (props) => {
     return(
@@ -9,7 +10,7 @@ const BoldText = (props) => {
 };
 
 BoldText.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.arrayOf(string).isRequired,
 };
 
 export default BoldText

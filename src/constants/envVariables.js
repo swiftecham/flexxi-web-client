@@ -1,0 +1,1 @@
+export const devUrl = 'https://api.flexxi.dev.swiftech.am/';
