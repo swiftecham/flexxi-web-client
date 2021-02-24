@@ -1,7 +1,7 @@
 import React from 'react';
-import ButtonDropDown from '../../../UiKitComponents/ButtonDropDown/ButtonDropDown';
+import ButtonDropDown from '../../../../UiKitComponents/ButtonDropDown/ButtonDropDown';
 import styles from './header.module.scss';
-import Button from '../../../UiKitComponents/Button';
+import Button from '../../../../UiKitComponents/Button';
 
 const Header = () => {
     return(

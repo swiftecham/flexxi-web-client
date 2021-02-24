@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styles from '../registrationSteps.module.scss';
-import Logo from '../../../Icons/background.svg';
-import BoldText from '../../../UiKitComponents/BoldText/BoldText';
-import Button from '../../../UiKitComponents/Button';
-import Input from '../../../UiKitComponents/Input';
-import { signUpUser } from '../../../../api/registrationApi';
+import Logo from '../../../../Icons/background.svg';
+import BoldText from '../../../../UiKitComponents/BoldText/BoldText';
+import Button from '../../../../UiKitComponents/Button';
+import Input from '../../../../UiKitComponents/Input';
+import { signUpUser } from '../../../../../api/LoginResetRegistrationApi';
 
 const EnterYourDetails = ({ phoneNumberObj : { countryCode , callingCode, number } }) => {
 

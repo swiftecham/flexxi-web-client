@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from '../registrationSteps.module.scss';
-import Logo from '../../../Icons/background.svg';
-import BoldText from '../../../UiKitComponents/BoldText/BoldText';
-import PhoneNumberField from '../../../ReusableFields/PhoneNumberField';
-import Button from '../../../UiKitComponents/Button';
+import Logo from '../../../../Icons/background.svg';
+import BoldText from '../../../../UiKitComponents/BoldText/BoldText';
+import PhoneNumberField from '../../../../ReusableFields/PhoneNumberField';
+import Button from '../../../../UiKitComponents/Button';
 import * as PropTypes from 'prop-types';
-import { submitPhoneNumber } from '../../../../api/registrationApi';
+import { submitPhoneNumber } from '../../../../../api/LoginResetRegistrationApi';
 
 
 const EnterYourPhone = ({ setPhoneNumber, setVerificationCode, setRegistrationStep, setPhoneNumberObj, phoneNumberObj }) => {

@@ -3,10 +3,10 @@ import * as PropTypes from 'prop-types';
 import styles from './button.module.scss';
 import cx from 'classnames';
 
-const Button = ({ children, primary, ...props }) => {
+const Button = ({ children, primary, text ,...props }) => {
     return(
         <button
-            className={cx(styles.button, {[styles.primary] : primary})}
+            className={cx(styles.button, {[styles.primary] : primary, [styles.text] : text})}
             {...props}
         >
              {children}
@@ -15,7 +15,7 @@ const Button = ({ children, primary, ...props }) => {
 };
 
 Button.propTypes = {
-    children: PropTypes.element.isRequired,
+    children: PropTypes.string.isRequired,
 };
 
 export default Button;
