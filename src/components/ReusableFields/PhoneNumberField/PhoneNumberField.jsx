@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './phoneNumberField.module.scss';
 import CountryPicker from '../CountryPicker';
 import countryPickerData from '../../../constants/countryPickerData';
 
-const PhoneNumberField = ( { setPhoneNumber, phoneNumberObj, onChange } ) => {
+const PhoneNumberField = ( { phoneNumberObj, onChange } ) => {
 
 
     const handleChangeInputValue = (e) => {

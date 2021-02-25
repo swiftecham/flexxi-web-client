@@ -7,6 +7,7 @@ import {
 import SignUp from './components/SignUpSignIn/SignUp/SigunUp';
 import './App.css'
 import ResetPassword from './components/SignUpSignIn/ResetPassword/ResetPassword';
+import SignIn from './components/SignUpSignIn/SignIn/SignIn';
 
 
 const App = () => {
@@ -19,6 +20,9 @@ const App = () => {
                 </Route>
                 <Route path="/resetpassword">
                     <ResetPassword />
+                </Route>
+                <Route path="/signin">
+                    <SignIn />
                 </Route>
                 <Route path="/">
                     5005

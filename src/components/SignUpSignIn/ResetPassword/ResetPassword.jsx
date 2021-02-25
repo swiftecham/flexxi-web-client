@@ -1,13 +1,14 @@
 import React from 'react'
 import styles from './resetPassword.module.scss'
 import ResetPasswordSteps from './ResetPasswordSteps/ResetPasswordSteps';
+import Banner from '../Banner';
 
 const ResetPassword = () => {
     return(
         <div
             className={styles.wrapper}
         >
-            <div className={styles.image}> Img </div>
+            <Banner />
             <ResetPasswordSteps />
         </div>
     );

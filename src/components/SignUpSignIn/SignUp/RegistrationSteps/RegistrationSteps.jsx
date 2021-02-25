@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from './Header';
 import styles from './registrationSteps.module.scss';
 import EnterYourPhone from './EnterYourPhone';
-import EnterCode from './EnterCode/EnterCode';
+import EnterCode from '../../Common/EnterCode/EnterCode';
 import EnterYourDetails from './EnterYourDetails';
 
 const RegistrationSteps = () => {
