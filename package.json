@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Web application for flexi client",
   "main": "src/index.js",
-  "repository": "git@github.com:swiftecham/flexxi-web.git",
+  "repository": "git@github.com:swiftecham/flexxi-web-client.git",
   "author": "Martin Ayvazyan <martinayvazyan@workfront.com>",
   "license": "MIT",
   "scripts": {
