@@ -4,6 +4,7 @@ import Logo from '../../../../Icons/background.svg';
 import BoldText from '../../../../UiKitComponents/BoldText/BoldText';
 import Input from '../../../../UiKitComponents/Input';
 import Button from '../../../../UiKitComponents/Button';
+import { Link } from 'react-router-dom';
 
 const EnterEmail  = ( { email, setEmail, handleSubmitEmail }) => {
 
@@ -30,7 +31,7 @@ const EnterEmail  = ( { email, setEmail, handleSubmitEmail }) => {
             >
                 Reset Password
             </Button>
-            <div> Back </div>
+            <Link to={'/signin'}> Back </Link>
         </div>
     )
 };

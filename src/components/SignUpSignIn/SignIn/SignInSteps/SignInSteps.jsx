@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
-import Header from '../../SignUp/RegistrationSteps/Header';
+import Header from '../../Common/Header';
 import styles from './signInSteps.module.scss';
-import Button from '../../../UiKitComponents/Button';
 import SignInFirstPage from './SignInFIrstPage';
 import EnterCode from '../../Common/EnterCode';
 
 const SignInSteps = () => {
 
     const [ verifyPinStep, setVerifyPinStep ] = useState(false);
+    const [ verificationCode, setVerificationCode ] = useState(false);
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword ] = useState('');
 
-    const phoneNumberObj =  {
+    const phoneNumberInitialStat =  {
         countryCode: 'AM',
         callingCode: '374',
         number: ''
     };
 
-    const handleClick = () => {
+    const [ phoneNumberObj, setPhoneNumberObj ] = useState(phoneNumberInitialStat);
 
+    const handleChangePhoneNumber = (newPhoneNumberObj) => {
+        setPhoneNumberObj({ ...newPhoneNumberObj });
     };
 
     return(
@@ -28,15 +32,20 @@ const SignInSteps = () => {
                         <>
                             <SignInFirstPage
                                 phoneNumberObj={phoneNumberObj}
+                                setEmail={setEmail}
+                                email={email}
+                                setPassword={setPassword}
+                                password={password}
+                                handleChangePhoneNumber={handleChangePhoneNumber}
+                                setVerifyPinStep={setVerifyPinStep}
+                                setVerificationCode={setVerificationCode}
                             />
-                            <Button
-                                primary
-                                onClick={handleClick}
-                            >
-                                Login
-                            </Button>
                         </>
-                        : <EnterCode />
+                        : <EnterCode
+                            setVerificationCode={setVerificationCode}
+                            verificationCode={verificationCode}
+                            phoneNumber={phoneNumberObj.callingCode + ' ' + phoneNumberObj.number}
+                        />
                 }
             </div>
         </div>

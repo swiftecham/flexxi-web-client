@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from '../../SignUp/RegistrationSteps/Header';
+import Header from '../../Common/Header';
 import styles from './resetPasswordSteps.module.scss';
 import EnterEmail from './EnterEmail';
 import EnterCode from './EnterCode';

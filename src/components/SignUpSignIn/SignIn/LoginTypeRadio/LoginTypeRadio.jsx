@@ -7,13 +7,13 @@ const LoginTypeRadio = ( { signInBy, setSignInBy } ) => {
         <div className={styles.loginTypeRadio}>
            <RadioButton
                label={'By Email'}
-               active={signInBy==='number'}
-               onClick={() => setSignInBy('number')}
+               active={signInBy==='email'}
+               onClick={() => setSignInBy('email')}
            />
            <RadioButton
                label={'By Number'}
-               active={signInBy!=='number'}
-               onClick={() => setSignInBy('email')}
+               active={signInBy === 'number'}
+               onClick={() => setSignInBy('number')}
            />
         </div>
     )

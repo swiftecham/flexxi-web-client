@@ -17,7 +17,7 @@ const EnterCode = ({ setRegistrationStep, setVerificationCode,  verificationCode
         };
         verifyPhoneNumber(requestObj)
             .then(data => console.log(data));
-        setRegistrationStep(2)
+        setRegistrationStep && setRegistrationStep(2)
     };
     // TODO timer 1:30
     return (

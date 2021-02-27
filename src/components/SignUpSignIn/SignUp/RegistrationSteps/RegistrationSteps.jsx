@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from './Header';
+import Header from '../../Common/Header';
 import styles from './registrationSteps.module.scss';
 import EnterYourPhone from './EnterYourPhone';
 import EnterCode from '../../Common/EnterCode/EnterCode';
