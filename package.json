@@ -7,6 +7,7 @@
   "author": "Martin Ayvazyan <martinayvazyan@workfront.com>",
   "license": "MIT",
   "scripts": {
+    "build": "webpack build",
     "dev": "NODE_ENV=development webpack serve --hot ",
     "test": "echo \"Error: no test specified\""
   },
