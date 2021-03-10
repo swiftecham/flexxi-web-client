@@ -11,6 +11,7 @@ import SignIn from './components/Pages/SignUpSignIn/SignIn/SignIn';
 import RequestJob from './components/Pages/RequestJob/RequestJob';
 import { Provider } from 'react-redux'
 import store from '../src/redux/store'
+import AuthHOC from './components/AuthHOC';
 
 
 const App = () => {
@@ -20,16 +21,24 @@ const App = () => {
             <Router>
                 <Switch>
                     <Route path="/signup">
-                        <SignUp />
+                        <AuthHOC>
+                            <SignUp />
+                        </AuthHOC>
                     </Route>
                     <Route path="/resetpassword">
-                        <ResetPassword />
+                        <AuthHOC>
+                            <ResetPassword />
+                        </AuthHOC>
                     </Route>
                     <Route path="/signin">
-                        <SignIn />
+                        <AuthHOC>
+                            <SignIn />
+                        </AuthHOC>
                     </Route>
                     <Route path="/requestjob">
-                        <RequestJob />
+                        <AuthHOC>
+                            <RequestJob />
+                        </AuthHOC>
                     </Route>
                 </Switch>
             </Router>
