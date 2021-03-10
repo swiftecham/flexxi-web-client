@@ -1,13 +1,14 @@
 import React from 'react';
-import styles from './requestJob.module.scss';
 import RequestJobBody from './RequestJobBody';
+import Header from '../Common/Header/Header';
+import Footer from '../Common/Footer';
 
 const RequestJob = () => {
     return(
         <>
-            <div className={styles.header}> header </div>
+            <Header />
             <RequestJobBody/>
-            <footer className={styles.footer}> footer </footer>
+            <Footer />
         </>
     )
 };

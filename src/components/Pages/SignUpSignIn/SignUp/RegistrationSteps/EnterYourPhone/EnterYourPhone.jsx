@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../registrationSteps.module.scss';
-import Logo from '../../../../../Icons/background.svg';
+import Logo from '../../../../../Icons/logo.svg';
 import BoldText from '../../../../../UiKitComponents/BoldText/BoldText';
 import PhoneNumberField from '../../../../../ReusableFields/PhoneNumberField';
 import Button from '../../../../../UiKitComponents/Button';

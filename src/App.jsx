@@ -28,7 +28,7 @@ const App = () => {
                     <Route path="/signin">
                         <SignIn />
                     </Route>
-                    <Route path="/">
+                    <Route path="/requestjob">
                         <RequestJob />
                     </Route>
                 </Switch>

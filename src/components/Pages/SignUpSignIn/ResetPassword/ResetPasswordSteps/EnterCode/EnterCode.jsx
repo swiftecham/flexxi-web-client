@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../resetPasswordSteps.module.scss';
-import Logo from '../../../../../Icons/background.svg';
+import Logo from '../../../../../Icons/logo.svg';
 import BoldText from '../../../../../UiKitComponents/BoldText/BoldText';
 import ConfirmCodeField from '../../../../../ReusableFields/ConfirmCodeField';
 import Button from '../../../../../UiKitComponents/Button';

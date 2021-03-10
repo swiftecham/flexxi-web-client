@@ -1,0 +1,30 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+
+  >div:first-of-type {
+    >a {
+      font-size: 14px;
+      color: #4e73ff;
+      margin-right: 48px;
+    }
+  }
+
+  >div:last-of-type {
+    display: flex;
+    align-items: center;
+  }
+}
+.suffix {
+  >img:first-of-type {
+    margin-right: 8px;
+  }
+
+  >span {
+    color: #7f7f7f;
+    font-size: 12.8px;
+    margin-left: 24px;
+  }
+}

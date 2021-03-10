@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../../SignUp/RegistrationSteps/registrationSteps.module.scss';
-import Logo from '../../../../Icons/background.svg';
+import Logo from '../../../../Icons/logo.svg';
 import BoldText from '../../../../UiKitComponents/BoldText/BoldText';
 import Button from '../../../../UiKitComponents/Button';
 import * as PropTypes from 'prop-types';

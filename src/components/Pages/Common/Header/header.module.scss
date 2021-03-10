@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding-left: 42px;
+  padding-right: 42px;
+
+  >a {
+    font-size: 16px;
+    color: #191d21;
+    padding-bottom: 24px;
+    padding-top: 24px;
+
+    &.active {
+      color: #4e73ff;
+    }
+  }
+
+  >a:first-of-type {
+    margin-right: 70px;
+  }
+
+  > img {
+      width: 124px;
+      height: 60px;
+      margin-right: 75px;
+  }
+
+  >button {
+    margin-left: auto;
+  }
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import BoldText from '../../../../../UiKitComponents/BoldText/BoldText';
 import LoginTypeRadio from '../../LoginTypeRadio';
 import Input from '../../../../../UiKitComponents/Input';
-import Logo from '../../../../../Icons/background.svg';
+import Logo from '../../../../../Icons/logo.svg';
 import Button from '../../../../../UiKitComponents/Button';
 import { signInByEmail, submitPhoneNumber } from '../../../../../../api/LoginResetRegistrationApi';
 import PhoneNumberField from '../../../../../ReusableFields/PhoneNumberField';
