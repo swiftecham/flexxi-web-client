@@ -9,7 +9,7 @@ ingress:
   hosts:
     - host: web.flexxi.dev.swiftech.am
       paths:
-        - /
+        - path: /
   tls:
    - secretName: flexxi-web-client-tls
      hosts:
