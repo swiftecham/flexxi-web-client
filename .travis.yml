@@ -1,0 +1,45 @@
+stages:
+  - build
+
+jobs:
+  include:
+    - stage: build
+      workspaces:
+        create:
+          name: build
+          paths:
+            - .
+      before_script:
+        - curl
+            --silent
+            --location
+            --output awscliv2.zip
+            https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+        - unzip -q awscliv2.zip
+        - ./aws/install --install-dir $(pwd)/tmp/aws --bin-dir $(pwd)/tmp/bin
+        - export
+            AWS_ACCESS_KEY_ID=$DEV_AWS_ACCESS_KEY_ID
+            AWS_SECRET_ACCESS_KEY=$DEV_AWS_SECRET_ACCESS_KEY
+        - ./tmp/bin/aws ecr get-login-password --region eu-west-1
+          |
+          docker login
+            --username AWS
+            --password-stdin
+            295345423838.dkr.ecr.eu-west-1.amazonaws.com
+        - export
+            AWS_ACCESS_KEY_ID=$PROD_AWS_ACCESS_KEY_ID
+            AWS_SECRET_ACCESS_KEY=$PROD_AWS_SECRET_ACCESS_KEY
+        - ./tmp/bin/aws ecr get-login-password --region eu-west-1
+          |
+          docker login
+            --username AWS
+            --password-stdin
+            179679461214.dkr.ecr.eu-west-1.amazonaws.com
+      script:
+        - set -o errexit
+        - docker build --tag web-client .
+        - tag=$(git rev-parse HEAD)
+        - docker tag web-client 295345423838.dkr.ecr.eu-west-1.amazonaws.com/flexxi/web-client:$tag
+        - docker tag web-client 179679461214.dkr.ecr.eu-west-1.amazonaws.com/flexxi/web-client:$tag
+        - docker push 295345423838.dkr.ecr.eu-west-1.amazonaws.com/flexxi/web-client:$tag
+        - docker push 179679461214.dkr.ecr.eu-west-1.amazonaws.com/flexxi/web-client:$tag
