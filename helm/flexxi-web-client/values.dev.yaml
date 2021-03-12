@@ -1,5 +1,5 @@
 image:
-  repository: 295345423838.dkr.ecr.eu-west-1.amazonaws.com/admin
+  repository: 295345423838.dkr.ecr.eu-west-1.amazonaws.com/flexxi/web-client
 
 ingress:
   enabled: true
