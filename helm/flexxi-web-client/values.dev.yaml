@@ -1,0 +1,16 @@
+image:
+  repository: 295345423838.dkr.ecr.eu-west-1.amazonaws.com/admin
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: nginx
+  hosts:
+    - host: web.flexxi.dev.swiftech.am
+      paths:
+        - /
+  tls:
+   - secretName: flexxi-web-client-tls
+     hosts:
+       - web.flexxi.dev.swiftech.am

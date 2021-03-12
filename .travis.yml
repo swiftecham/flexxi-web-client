@@ -1,5 +1,9 @@
 stages:
   - build
+  - name: deploy-dev
+    if: branch = develop
+  - name: deploy-prod
+    if: branch = master
 
 jobs:
   include:
@@ -43,3 +47,73 @@ jobs:
         - docker tag web-client 179679461214.dkr.ecr.eu-west-1.amazonaws.com/flexxi/web-client:$tag
         - docker push 295345423838.dkr.ecr.eu-west-1.amazonaws.com/flexxi/web-client:$tag
         - docker push 179679461214.dkr.ecr.eu-west-1.amazonaws.com/flexxi/web-client:$tag
+
+    - stage: deploy-dev
+      workspaces:
+        use: build
+      git:
+        clone: false
+      before_script:
+        - cd ${TRAVIS_REPO_SLUG}
+        - curl
+            --silent
+            --location
+            --output ./tmp/bin/kubectl
+            https://storage.googleapis.com/kubernetes-release/release/$(
+              curl
+                --silent
+                https://storage.googleapis.com/kubernetes-release/release/stable.txt
+            )/bin/linux/amd64/kubectl
+        - chmod +x ./tmp/bin/kubectl
+        - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+          |
+          HELM_INSTALL_DIR=./tmp/bin/ PATH=$(pwd)/tmp/bin:${PATH} bash
+        - export
+            AWS_ACCESS_KEY_ID=$DEV_AWS_ACCESS_KEY_ID
+            AWS_SECRET_ACCESS_KEY=$DEV_AWS_SECRET_ACCESS_KEY
+        - ./tmp/bin/aws s3 cp s3://swiftech-config-dev/config ./tmp/.kube/config
+      script:
+        - PATH=./tmp/bin:${PATH} ./tmp/bin/helm
+            --kubeconfig ./tmp/.kube/config
+            --namespace flexxi
+            upgrade
+            flexxi-web-client
+            helm/flexxi-web-client
+            --install
+            --set image.tag=$(git rev-parse HEAD)
+            --values helm/flexxi-web-client/values.dev.yaml
+
+    - stage: deploy-prod
+      workspaces:
+        use: build
+      git:
+        clone: false
+      before_script:
+        - cd ${TRAVIS_REPO_SLUG}
+        - curl
+            --silent
+            --location
+            --output ./tmp/bin/kubectl
+            https://storage.googleapis.com/kubernetes-release/release/$(
+              curl
+                --silent
+                https://storage.googleapis.com/kubernetes-release/release/stable.txt
+            )/bin/linux/amd64/kubectl
+        - chmod +x ./tmp/bin/kubectl
+        - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+          |
+          HELM_INSTALL_DIR=./tmp/bin/ PATH=$(pwd)/tmp/bin:${PATH} bash
+        - export
+            AWS_ACCESS_KEY_ID=$PROD_AWS_ACCESS_KEY_ID
+            AWS_SECRET_ACCESS_KEY=$PROD_AWS_SECRET_ACCESS_KEY
+        - ./tmp/bin/aws s3 cp s3://swiftech-config/config ./tmp/.kube/config
+      script:
+        - PATH=./tmp/bin:${PATH} ./tmp/bin/helm
+            --kubeconfig ./tmp/.kube/config
+            --namespace flexxi
+            upgrade
+            flexxi-web-client
+            helm/flexxi-web-client
+            --install
+            --set image.tag=$(git rev-parse HEAD)
+            --values helm/flexxi-web-client/values.prod.yaml
