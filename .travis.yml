@@ -3,7 +3,7 @@ stages:
   - name: deploy-dev
     if: branch = develop
   - name: deploy-prod
-    if: branch = master
+    if: branch = main
 
 jobs:
   include:
