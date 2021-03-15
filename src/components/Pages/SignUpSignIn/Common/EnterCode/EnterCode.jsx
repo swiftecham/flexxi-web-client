@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../SignUp/RegistrationSteps/registrationSteps.module.scss';
+import styles from '../../SignUp/SignUpSteps/registrationSteps.module.scss';
 import Logo from '../../../../Icons/logo.svg';
 import BoldText from '../../../../UiKitComponents/BoldText/BoldText';
 import Button from '../../../../UiKitComponents/Button';

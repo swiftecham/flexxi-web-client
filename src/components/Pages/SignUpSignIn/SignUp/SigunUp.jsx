@@ -1,13 +1,14 @@
 import React from 'react'
 import styles from './signup.module.scss'
-import RegistrationSteps from './RegistrationSteps/RegistrationSteps';
+import RegistrationSteps from './SignUpSteps/SignUpSteps';
+import Banner from '../Banner';
 
 const SignUp = () => {
     return(
         <div
             className={styles.wrapper}
         >
-            <div className={styles.image}> Img </div>
+            <Banner />
             <RegistrationSteps />
         </div>
     );
