@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../../SignUp/SignUpSteps/registrationSteps.module.scss';
 import Logo from '../../../../Icons/logo.svg';
 import BoldText from '../../../../UiKitComponents/BoldText/BoldText';
@@ -7,10 +7,18 @@ import * as PropTypes from 'prop-types';
 import ConfirmCodeField from '../../../../ReusableFields/ConfirmCodeField';
 import { signInWithAuthToken, verifyPhoneNumber } from '../../../../../api/LoginResetRegistrationApi';
 import { useHistory } from 'react-router-dom';
+import Countdown from "react-countdown";
 
-
-const EnterCode = ({ setRegistrationStep, setVerificationCode,  verificationCode, phoneNumber }) => {
+const EnterCode = ({ setRegistrationStep, setVerificationCode,  verificationCode, phoneNumber, handleSubmitPhoneNumber }) => {
     const history = useHistory();
+
+    const [ resendIsAvailable, setResendIsAvailable ] = useState(false);
+
+    const renderer = ({ minutes, seconds }) => {
+        return (
+            <p> You can request new code in {minutes}:{seconds} </p>
+        );
+    };
 
     const handleSubmit = () => {
        const requestObj = {
@@ -32,7 +40,7 @@ const EnterCode = ({ setRegistrationStep, setVerificationCode,  verificationCode
                 }
             });
     };
-    // TODO timer 1:30
+
     return (
         <div className={styles.registrationBody}>
             <img src={Logo} alt={'Flexxi'}/>
@@ -41,7 +49,13 @@ const EnterCode = ({ setRegistrationStep, setVerificationCode,  verificationCode
             <br/>
             <p> Please fill in the 6-digit code you just received from us via sms. </p>
             <ConfirmCodeField verificationCode={verificationCode} setVerificationCode={setVerificationCode}/>
-            <p> You can request new code in 1:30 </p>
+            {resendIsAvailable ?
+                <Button text onClick={() => {
+                    handleSubmitPhoneNumber();
+                    setResendIsAvailable(false)
+                }}>Resend code</Button> :
+                <Countdown  date={Date.now() + 90000} renderer={renderer} onComplete={() =>setResendIsAvailable(true)}/>
+            }
             <br />
             <Button
                 primary

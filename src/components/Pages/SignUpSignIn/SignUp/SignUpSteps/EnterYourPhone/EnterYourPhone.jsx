@@ -5,32 +5,15 @@ import BoldText from '../../../../../UiKitComponents/BoldText/BoldText';
 import PhoneNumberField from '../../../../../ReusableFields/PhoneNumberField';
 import Button from '../../../../../UiKitComponents/Button';
 import * as PropTypes from 'prop-types';
-import { submitPhoneNumber } from '../../../../../../api/LoginResetRegistrationApi';
 
-
-const EnterYourPhone = ({ setPhoneNumber, setVerificationCode, setRegistrationStep, setPhoneNumberObj, phoneNumberObj }) => {
+const EnterYourPhone = ({ setPhoneNumberObj, phoneNumberObj, handleSubmitPhoneNumber }) => {
 
 
     const handleChange = (newPhoneNumberObj) => {
-
         setPhoneNumberObj({ ...newPhoneNumberObj });
     };
 
-    const handleSubmitPhoneNumber = () => {
-        const requestObj = {
-            countryCode: phoneNumberObj.countryCode,
-            language: 'EN',
-            mobile: phoneNumberObj.callingCode + ' ' + phoneNumberObj.number
-        };
-        submitPhoneNumber(requestObj)
-            .then((content) => {
-                if (content.smsCode){
-                    setVerificationCode(content.smsCode);
-                }
-                setPhoneNumber(phoneNumberObj.callingCode + ' ' + phoneNumberObj.number);
-                setRegistrationStep(1);
-            });
-    };
+
 
     return (
         <div className={styles.registrationBody}>

@@ -4,6 +4,7 @@ import styles from './registrationSteps.module.scss';
 import EnterYourPhone from './EnterYourPhone';
 import EnterCode from '../../Common/EnterCode/EnterCode';
 import EnterYourDetails from './EnterYourDetails';
+import { submitPhoneNumber } from '../../../../../api/LoginResetRegistrationApi';
 
 const RegistrationSteps = () => {
 
@@ -17,6 +18,21 @@ const RegistrationSteps = () => {
         const [ phoneNumber, setPhoneNumber] = useState('');
         const [ verificationCode, setVerificationCode] = useState('');
 
+    const handleSubmitPhoneNumber = () => {
+        const requestObj = {
+            countryCode: phoneNumberObj.countryCode,
+            language: 'EN',
+            mobile: phoneNumberObj.callingCode + ' ' + phoneNumberObj.number
+        };
+        submitPhoneNumber(requestObj)
+            .then((content) => {
+                if (content.smsCode){
+                    setVerificationCode(content.smsCode);
+                }
+                setPhoneNumber(phoneNumberObj.callingCode + ' ' + phoneNumberObj.number);
+                setRegistrationStep(1);
+            });
+    };
         return(
             <div className={styles.registrationSteps}>
                 <Header />
@@ -26,8 +42,14 @@ const RegistrationSteps = () => {
                     setVerificationCode={setVerificationCode}
                     phoneNumberObj={phoneNumberObj}
                     setPhoneNumberObj={setPhoneNumberObj}
+                    handleSubmitPhoneNumber={handleSubmitPhoneNumber}
                 /> : []}
-                {registrationStep === 1 ? <EnterCode setRegistrationStep={setRegistrationStep} verificationCode={verificationCode} phoneNumber={phoneNumber}/> : []}
+                {registrationStep === 1 ? <EnterCode
+                    setRegistrationStep={setRegistrationStep}
+                    verificationCode={verificationCode}
+                    phoneNumber={phoneNumber}
+                    handleSubmitPhoneNumber={handleSubmitPhoneNumber}
+                /> : []}
                 {registrationStep === 2 ? <EnterYourDetails
                     setRegistrationStep={setRegistrationStep}
                     phoneNumberObj={phoneNumberObj}
