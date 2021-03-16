@@ -1,0 +1,36 @@
+.banner {
+  width: 44%;
+  height: 100%;
+  background-image: url('../../../../components/Icons/banner.jpg');
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.bannerText {
+  position: absolute;
+  bottom: 40px;
+  left: 30px;
+  right: 30px;
+
+  >img {
+    margin-right: 16px;
+  }
+
+  >span:first-of-type {
+    font-size: 32px;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: Montserrat;
+
+  }
+  >span:last-of-type {
+    display: inline-block;
+    font-family: Montserrat;
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 1.13;
+    margin-top: 12px;
+    margin-bottom: 16px;
+  }
+}

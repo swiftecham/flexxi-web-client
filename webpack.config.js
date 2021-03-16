@@ -13,7 +13,7 @@ module.exports = {
         contentBase: path.resolve(__dirname, 'dist'),
         open: true,
         clientLogLevel: 'silent',
-        port: 3000,
+        port: 4000,
         historyApiFallback: true,
     },
     performance : {
