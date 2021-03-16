@@ -2,7 +2,7 @@ import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
+    Route, Redirect,
 } from "react-router-dom";
 import SignUp from './components/Pages/SignUpSignIn/SignUp/SigunUp';
 import './App.css'
@@ -38,6 +38,11 @@ const App = () => {
                     <Route path="/requestjob">
                         <AuthHOC>
                             <RequestJob />
+                        </AuthHOC>
+                    </Route>
+                    <Route path="/">
+                        <AuthHOC>
+                            <Redirect to='/requestjob'/>
                         </AuthHOC>
                     </Route>
                 </Switch>
