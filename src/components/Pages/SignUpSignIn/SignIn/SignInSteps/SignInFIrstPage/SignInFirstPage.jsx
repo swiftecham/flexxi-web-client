@@ -6,12 +6,12 @@ import Logo from '../../../../../Icons/logo.svg';
 import Button from '../../../../../UiKitComponents/Button';
 import { signInByEmail, submitPhoneNumber } from '../../../../../../api/LoginResetRegistrationApi';
 import PhoneNumberField from '../../../../../ReusableFields/PhoneNumberField';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const SignInFirstPage = ( { phoneNumberObj, email, setEmail, password, setPassword, handleChangePhoneNumber, setVerifyPinStep, setVerificationCode}) => {
 
     const [ signInBy, setSignInBy ] = useState('email');
-
+    const history = useHistory();
     const loginByEmail = () => {
         const requestObj = {
             email,
@@ -19,7 +19,11 @@ const SignInFirstPage = ( { phoneNumberObj, email, setEmail, password, setPasswo
         };
 
         signInByEmail(requestObj)
-            .then((data) => console.log(data));
+            .then((data) => {
+                localStorage.setItem('accessToken', data.accessToken);
+                localStorage.setItem('refreshToken', data.refreshToken);
+                history.push("/requestjob");
+            });
     };
 
     const loginByPhone = () => {

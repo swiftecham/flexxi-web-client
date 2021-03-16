@@ -5,10 +5,12 @@ import BoldText from '../../../../UiKitComponents/BoldText/BoldText';
 import Button from '../../../../UiKitComponents/Button';
 import * as PropTypes from 'prop-types';
 import ConfirmCodeField from '../../../../ReusableFields/ConfirmCodeField';
-import { verifyPhoneNumber } from '../../../../../api/LoginResetRegistrationApi';
+import { signInWithAuthToken, verifyPhoneNumber } from '../../../../../api/LoginResetRegistrationApi';
+import { useHistory } from 'react-router-dom';
 
 
 const EnterCode = ({ setRegistrationStep, setVerificationCode,  verificationCode, phoneNumber }) => {
+    const history = useHistory();
 
     const handleSubmit = () => {
        const requestObj = {
@@ -16,8 +18,19 @@ const EnterCode = ({ setRegistrationStep, setVerificationCode,  verificationCode
             smsCode: verificationCode
         };
         verifyPhoneNumber(requestObj)
-            .then(data => console.log(data));
-        setRegistrationStep && setRegistrationStep(2)
+            .then(data => {
+                if (setRegistrationStep) {
+                    setRegistrationStep(2)
+                }else {
+                    signInWithAuthToken({
+                        authToken: data.authToken
+                    }).then((data) => {
+                        localStorage.setItem('accessToken', data.accessToken);
+                        localStorage.setItem('refreshToken', data.refreshToken);
+                        history.push("/requestjob");
+                    })
+                }
+            });
     };
     // TODO timer 1:30
     return (

@@ -4,15 +4,15 @@ import Logo from '../../../../../Icons/logo.svg';
 import BoldText from '../../../../../UiKitComponents/BoldText/BoldText';
 import Button from '../../../../../UiKitComponents/Button';
 import Input from '../../../../../UiKitComponents/Input';
-import { signUpUser } from '../../../../../../api/LoginResetRegistrationApi';
+import { signInWithAuthToken, signUpUser } from '../../../../../../api/LoginResetRegistrationApi';
+import { useHistory } from 'react-router-dom';
 
 const EnterYourDetails = ({ phoneNumberObj : { countryCode , callingCode, number } }) => {
 
     const [ fullName, setFullName ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
-
-
+    const history = useHistory();
 
     const handleSubmit = () => {
         const requestObj = {
@@ -27,7 +27,13 @@ const EnterYourDetails = ({ phoneNumberObj : { countryCode , callingCode, number
 
         signUpUser(requestObj)
             .then((data) => {
-                localStorage.setItem('authToken', data.authToken);
+                signInWithAuthToken({
+                    authToken: data.authToken
+                }).then((data) => {
+                    localStorage.setItem('accessToken', data.accessToken);
+                    localStorage.setItem('refreshToken', data.refreshToken);
+                    history.push("/requestjob");
+                })
             });
     };
 

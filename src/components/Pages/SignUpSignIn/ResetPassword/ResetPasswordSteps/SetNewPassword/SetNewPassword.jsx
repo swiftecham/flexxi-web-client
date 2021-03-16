@@ -5,11 +5,13 @@ import BoldText from '../../../../../UiKitComponents/BoldText/BoldText';
 import Input from '../../../../../UiKitComponents/Input';
 import Button from '../../../../../UiKitComponents/Button';
 import { changePassword } from '../../../../../../api/LoginResetRegistrationApi';
+import { useHistory } from 'react-router-dom';
 
 const SetNewPassword = ( { token } ) => {
 
     const [ newPassword, setNewPassword ] = useState('');
     const [ confirmPassword, setConfirmPassword ] = useState('');
+    const history = useHistory();
 
     const handlePasswordChange = () => {
 
@@ -21,7 +23,9 @@ const SetNewPassword = ( { token } ) => {
 
         if (newPassword === confirmPassword) {
             changePassword(requestObj)
-                .then((data) => console.log(data))
+                .then(() => {
+                    history.push("/signin");
+                })
         }
     };
 
